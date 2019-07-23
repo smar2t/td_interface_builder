@@ -1,4 +1,4 @@
-export const propertyMixin = {
+export const resourceMixin = {
   data: () => ({
     submitting: false,
   }),

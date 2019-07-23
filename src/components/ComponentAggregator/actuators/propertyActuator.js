@@ -1,11 +1,11 @@
 import Axios from 'axios';
 
 export default {
-  getValue() {
+  getValue(property) {
 
   },
-  setValue(v) {
-    Axios
-      .post;
+  setValue(property, v) {
+    return Axios
+      .post(property.links[0]);
   },
 };

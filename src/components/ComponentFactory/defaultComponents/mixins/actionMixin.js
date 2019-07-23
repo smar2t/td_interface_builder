@@ -6,7 +6,7 @@ export const actionMixin = {
     submitting: false,
     inputValues: {},
   }),
-  props: ['action'],
+  props: ['action', 'customTextInput', 'customNumberInput', 'customSelectInput'],
   computed: {
     action() {
       return this.$props.action;

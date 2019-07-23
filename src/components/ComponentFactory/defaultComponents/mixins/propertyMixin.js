@@ -1,4 +1,4 @@
-import resourceMixin from './resourceMixin';
+import { resourceMixin } from './resourceMixin';
 
 export const propertyMixin = {
   mixins: [resourceMixin],
