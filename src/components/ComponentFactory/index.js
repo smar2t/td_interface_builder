@@ -42,9 +42,9 @@ export default {
       const event = data.events[eventKey];
       const input = EventInput;
 
-      actionComponents[propertyKey]({ input, action });
+      eventComponents[eventKey]({ input, event });
     }
 
-    return actionComponents;
+    return eventComponents;
   },
 };

@@ -13,7 +13,7 @@
       </div>
 
       <div>
-        <component v-for="(action, name) in properties"
+        <component v-for="(action, name) in actionComponents"
                   :key="name"
                   :is="componentForInput(action)"
                   :action="action"
@@ -25,7 +25,7 @@
       </div>
 
       <div>
-        <component v-for="(event, name) in properties"
+        <component v-for="(event, name) in eventComponents"
                   :key="name"
                   :is="componentForInput(event)"
                   :event="event"
@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import NumberInput from './NumberInput';
-import SelectInput from './SelectInput';
-import TextInput from './TextInput';
-import ActionMixin from './mixins/actionMixin';
+import NumberInput from '../ComponentFactory/defaultComponents/NumberInput.vue';
+import SelectInput from '../ComponentFactory/defaultComponents/SelectInput.vue';
+import TextInput from '../ComponentFactory/defaultComponents/TextInput.vue';
+import ComponentFactory from '../ComponentFactory';
 
 export default {
   components: { NumberInput, SelectInput, TextInput },
@@ -53,10 +53,13 @@ export default {
     return {
       formData: this.value || {},
       baseURL: 'http://192.168.0.48',
+      propertyComponents: [],
+      actionComponents: [],
+      eventComponents: [],
     };
   },
   mounted() {
-
+    propertyComponents = ComponentFactory.generatePropertyComponents(this.$props.td);
   },
 
   methods: {

@@ -6,15 +6,17 @@
       :path="'res'"
       :data="td">
     </VueJsonPretty>
+    <DefaultAggregator :td="td"/>
   </div>
 </template>
 
 <script>
 import VueJsonPretty from 'vue-json-pretty';
+import DefaultAggregator from './ComponentAggregator/DefaultAggregator';
 
 export default {
   name: 'HelloWorld',
-  components: { VueJsonPretty },
+  components: { VueJsonPretty, DefaultAggregator },
   data: () => ({
     td: null,
   }),
