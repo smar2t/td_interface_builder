@@ -2,15 +2,17 @@
   <div>
     <label>{{label}}</label>
     <input type="number"
-           :name="name"
-           :value="value"
+           :name="label"
+           :value="shownValue"
            @input="$emit('input',
            $event.target.value)"
            :placeholder="placeholder">
   </div>
 </template>
 <script>
+import propertyMixin from './mixins/propertyMixin';
+
 export default {
-  name: 'NumberInput',
+  mixins: [propertyMixin]
 };
 </script>

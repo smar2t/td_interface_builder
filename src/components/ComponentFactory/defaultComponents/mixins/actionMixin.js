@@ -1,6 +1,6 @@
 import resourceMixin from './resourceMixin';
 
-export const actionMixin = {
+export default {
   mixins: [resourceMixin],
   data: () => ({
     submitting: false,
@@ -25,6 +25,7 @@ export const actionMixin = {
     submit() {
       this.submitting = true;
       this.actuator.setValue(this.inputValues).then((result) => {
+        console.log(result);
         this.submitting = false;
       });
     },

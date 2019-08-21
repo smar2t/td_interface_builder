@@ -1,14 +1,15 @@
 <template>
   <div>
-      <div>
+      <p>{{baseURL}}</p>
+      <div id="properties">
         <component v-for="(component, name) in propertyComponents"
                   :key="name"
                   :is="component.input"
-                  :property="component.property"
-                  :actuator="PropertyActuator"
+                  :propertyProp="component.property"
+                  :actuatorProp="PropertyActuator"
                   :baseURL="baseURL"
                   @input="propertyInput"
-                  v-bind="input">
+                  v-bind="component.input">
         </component>
       </div>
 
@@ -44,33 +45,46 @@
 import NumberInput from '../ComponentFactory/defaultComponents/NumberInput.vue';
 import SelectInput from '../ComponentFactory/defaultComponents/SelectInput.vue';
 import TextInput from '../ComponentFactory/defaultComponents/TextInput.vue';
-import ComponentFactory from '../ComponentFactory';
+import ComponentFactory from '../ComponentFactory/index.js';
+import PropertyActuator from "./actuators/propertyActuator"
 
 export default {
-  components: { NumberInput, SelectInput, TextInput },
-  props: ['td'],
-  data() {
-    return {
-      formData: this.value || {},
-      baseURL: 'http://192.168.0.48',
-      propertyComponents: [],
-      actionComponents: [],
-      eventComponents: [],
-    };
-  },
+  data: () => ({
+    formData: {},
+    baseURL: 'http://192.168.0.48',
+    propertyComponents: [],
+    actionComponents: [],
+    eventComponents: [],
+  }),
   mounted() {
-    propertyComponents = ComponentFactory.generatePropertyComponents(this.$props.td);
+    this.propertyComponents = ComponentFactory.generatePropertyComponents(this.$props.td);
   },
-
+  components: { NumberInput, SelectInput, TextInput, PropertyActuator },
+  props: ['td'],
+  computed: {
+    thingDescription: {
+      get() {
+        return this.$props.td;
+      },
+      set(v) {
+        this.$emit('tdChanged', v);
+      },
+    },
+  },
+  watch: {
+    thingDescription(val) {
+      this.propertyComponents = ComponentFactory.generatePropertyComponents(val);
+    },
+  },
   methods: {
     propertyInput(property) {
-
+      console.log(property);
     },
     actionInput(action) {
-
+      console.log(action);
     },
     eventInput(event) {
-
+      console.log(event);
     },
     updateForm(fieldName, value) {
       this.$set(this.formData, fieldName, value);

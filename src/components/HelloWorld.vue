@@ -12,21 +12,35 @@
 
 <script>
 import VueJsonPretty from 'vue-json-pretty';
-import DefaultAggregator from './ComponentAggregator/DefaultAggregator';
+import DefaultAggregator from './ComponentAggregator/DefaultAggregator.vue';
 
 export default {
   name: 'HelloWorld',
   components: { VueJsonPretty, DefaultAggregator },
   data: () => ({
-    td: null,
+    td: { 
+      actions: {},  
+      properties: {
+        test: {
+          enum: false,
+          type: "number"
+        },
+        test2: {
+          enum: true,
+          type: "text",
+          options: ["Brazil", "Panama", "USA"]
+        }
+      },
+      events: {}
+    },
   }),
   props: {
     msg: String,
   },
   mounted() {
-    fetch('http://192.168.0.48/things/led/')
-      .then(res => res.json())
-      .then(json => this.td = json);
+    // fetch('http://192.168.0.48/things/led/')
+    //   .then(res => res.json())
+    //   .then((json) => { this.td = json; });
   },
 };
 </script>

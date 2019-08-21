@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import { propertyMixin } from './mixins/propertyMixin';
+import propertyMixin from './mixins/propertyMixin';
 
 export default {
   name: 'TextInput',

@@ -1,12 +1,14 @@
 import NumberInput from './defaultComponents/NumberInput.vue';
 import SelectInput from './defaultComponents/SelectInput.vue';
 import TextInput from './defaultComponents/TextInput.vue';
+import ActionInput from './defaultComponents/ActionInput.vue';
+import EventInput from './defaultComponents/EventInput.vue';
 
 export default {
   generatePropertyComponents(data) {
-    const propertyComponents = {};
+    let propertyComponents = {};
 
-    for (propertyKey in data.properties) {
+    Object.keys(data.properties).forEach((propertyKey) => {
       const property = data.properties[propertyKey];
       let input = TextInput;
       if (property.enum) {
@@ -15,9 +17,9 @@ export default {
       if (property.type === 'number' || property.type === 'integer') {
         input = NumberInput;
       }
-
-      propertyComponents[propertyKey]({ input, property });
-    }
+      console.log(property.type)
+      propertyComponents[propertyKey] = { input, property };
+    });
 
     return propertyComponents;
   },
@@ -25,12 +27,13 @@ export default {
   generateActionComponents(data) {
     const actionComponents = {};
 
-    for (actionKey in data.actions) {
+    if (data.actions){
+    Object.values(data.actions).forEach((actionKey) => {
       const action = data.actions[actionKey];
       const input = ActionInput;
-
-      actionComponents[propertyKey]({ input, action });
-    }
+      actionComponents[actionKey]({ input, action });
+    });
+  }
 
     return actionComponents;
   },
@@ -38,12 +41,11 @@ export default {
   generateEventComponents(data) {
     const eventComponents = {};
 
-    for (eventKey in data.events) {
-      const event = data.events[eventKey];
+    Object.keys(data.events).forEach((eventKey) => {
+      const event = data.actions[eventKey];
       const input = EventInput;
-
       eventComponents[eventKey]({ input, event });
-    }
+    });
 
     return eventComponents;
   },

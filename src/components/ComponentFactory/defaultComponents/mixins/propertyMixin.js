@@ -1,14 +1,15 @@
-import { resourceMixin } from './resourceMixin';
+import axios from 'axios';
+import resourceMixin from './resourceMixin';
 
-export const propertyMixin = {
+export default {
   mixins: [resourceMixin],
   data: () => ({
     shownValue: null,
   }),
-  props: ['property'],
+  props: ['propertyProp'],
   computed: {
     property() {
-      return this.$props.property;
+      return this.$props.propertyProp;
     },
     placeholder() {
       return this.property.description;
@@ -49,16 +50,16 @@ export const propertyMixin = {
     },
   },
   async mounted() {
-    const finishedSetup = false;
-    for (const link in this.links) {
-      if (finishedSetup) {
-        break;
+    if (this.links){
+    Object.values(this.links).forEach((link) => {
+      if (link) {
+        axios
+          .get(link)
+          .then((response) => {
+            this.shownValue = response;
+          });
       }
-      await axios
-        .get(link)
-        .then((response) => {
-          this.shownValue = response;
-        });
-    }
+    });
+  }
   },
 };

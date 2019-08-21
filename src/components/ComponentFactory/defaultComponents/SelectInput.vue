@@ -13,7 +13,15 @@
   </div>
 </template>
 <script>
+import propertyMixin from './mixins/propertyMixin';
+
 export default {
+  mixins: [propertyMixin],
   name: 'SelectInput',
+  computed: {
+    options(){
+      return this.property.options
+    }
+  }
 };
 </script>

@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import NumberInput from './NumberInput';
-import SelectInput from './SelectInput';
-import TextInput from './TextInput';
+import NumberInput from './NumberInput.vue';
+import SelectInput from './SelectInput.vue';
+import TextInput from './TextInput.vue';
 import ActionMixin from './mixins/actionMixin';
 
 export default {

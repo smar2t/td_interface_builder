@@ -1,11 +1,11 @@
-export const resourceMixin = {
+export default {
   data: () => ({
     submitting: false,
   }),
-  props: ['actuator'],
+  props: ['actuatorProp'],
   computed: {
     actuator() {
-      return this.$props.actuator;
+      return this.$props.actuatorProp;
     },
     label() {
       return this.property.title;
