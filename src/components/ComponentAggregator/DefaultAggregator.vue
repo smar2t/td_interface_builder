@@ -6,10 +6,8 @@
                   :key="name"
                   :is="component.input"
                   :propertyProp="component.property"
-                  :actuatorProp="PropertyActuator"
                   :baseURL="baseURL"
-                  @input="propertyInput"
-                  v-bind="component.input">
+                  @input="propertyInput">
         </component>
       </div>
 
@@ -18,7 +16,6 @@
                   :key="name"
                   :is="componentForInput(action)"
                   :action="action"
-                  :actuator="ActionActuator"
                   :baseURL="baseURL"
                   @input="actionInput"
                   v-bind="input">
@@ -49,7 +46,11 @@ import ComponentFactory from '../ComponentFactory/index.js';
 import PropertyActuator from "./actuators/propertyActuator"
 
 export default {
+  props: ['td'],
   data: () => ({
+    propertyActuator: PropertyActuator,
+    propertyActuator: PropertyActuator,
+    propertyActuator: PropertyActuator,
     formData: {},
     baseURL: 'http://192.168.0.48',
     propertyComponents: [],
@@ -60,7 +61,6 @@ export default {
     this.propertyComponents = ComponentFactory.generatePropertyComponents(this.$props.td);
   },
   components: { NumberInput, SelectInput, TextInput, PropertyActuator },
-  props: ['td'],
   computed: {
     thingDescription: {
       get() {
@@ -77,8 +77,9 @@ export default {
     },
   },
   methods: {
-    propertyInput(property) {
-      console.log(property);
+    propertyInput(value, property) {
+      console.log(property.title + ":" + value);
+      console.log('property: ' + JSON.stringify(property))
     },
     actionInput(action) {
       console.log(action);

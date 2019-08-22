@@ -2,10 +2,10 @@
   <div>
     <label>{{label}}</label>
     <input type="number"
-           :name="label"
+           :name="label + ': '"
            :value="shownValue"
            @input="$emit('input',
-           $event.target.value)"
+           $event.target.value, property)"
            :placeholder="placeholder">
   </div>
 </template>

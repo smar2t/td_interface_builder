@@ -11,9 +11,6 @@ export default {
     action() {
       return this.$props.action;
     },
-    actuator() {
-      return this.$props.actuator;
-    },
     description() {
       return this.action.description;
     },

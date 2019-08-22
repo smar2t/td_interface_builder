@@ -2,10 +2,9 @@
   <div class="hello">
     <p>baseURL: http://192.168.0.48/things/led/</p>
     <h3>Thing Description</h3>
-    <VueJsonPretty
-      :path="'res'"
-      :data="td">
-    </VueJsonPretty>
+    <VJsoneditor
+      v-model="td">
+    </VJsoneditor>
     <DefaultAggregator :td="td"/>
   </div>
 </template>
@@ -14,19 +13,23 @@
 import VueJsonPretty from 'vue-json-pretty';
 import DefaultAggregator from './ComponentAggregator/DefaultAggregator.vue';
 
+import VJsoneditor from 'vue-jsoneditor';
+
 export default {
   name: 'HelloWorld',
-  components: { VueJsonPretty, DefaultAggregator },
+  components: { VJsoneditor, DefaultAggregator },
   data: () => ({
     td: { 
       actions: {},  
       properties: {
         test: {
           enum: false,
-          type: "number"
+          type: "number",
+          title: "Idade"
         },
         test2: {
           enum: true,
+          title: "País",
           type: "text",
           options: ["Brazil", "Panama", "USA"]
         }

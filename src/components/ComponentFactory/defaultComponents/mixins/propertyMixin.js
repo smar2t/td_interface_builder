@@ -5,11 +5,18 @@ export default {
   mixins: [resourceMixin],
   data: () => ({
     shownValue: null,
+    editingValue: null
   }),
   props: ['propertyProp'],
   computed: {
     property() {
       return this.$props.propertyProp;
+    },
+    label(){
+      return this.property.title;
+    },
+    multi(){
+      return this.property.multiple
     },
     placeholder() {
       return this.property.description;
@@ -28,38 +35,36 @@ export default {
     },
     editable() {
       return this.property.readOnly;
-    },
-    computedValue: {
-      get() {
-        return this.value;
-      },
-      set(v) {
-        if (!this.readOnly) {
-          this.submitting = true;
-          this.actuator.setValue(v).then((result) => {
-            this.value = result;
-            this.submitting = false;
-          });
-        }
-      },
-    },
+    }
   },
   methods: {
-    submit() {
-      this.computedValue = this.shownValue;
+    submit(actuator) {
+      if (!this.readOnly) {
+        this.submitting = true;
+        this.$emit('submitted', this.property, this.editingValue);
+        actuator.setValue(this.editingValue).then((result) => {
+          this.shownValue = result;
+          this.submitting = false;
+        });
+      }
     },
-  },
-  async mounted() {
-    if (this.links){
-    Object.values(this.links).forEach((link) => {
-      if (link) {
-        axios
-          .get(link)
-          .then((response) => {
-            this.shownValue = response;
+    update() {
+      if (this.links) {
+        axios.
+          Object.values(this.links).forEach((link) => {
+            if (link) {
+              axios
+                .get(link)
+                .then((response) => {
+                  this.shownValue = response;
+                  this.editingValue = response;
+                });
+            }
           });
       }
-    });
-  }
+    },
+    mounted() {
+      update()
+    }
   },
 };

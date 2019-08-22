@@ -38,7 +38,7 @@ export default {
     },
     updateForm(fieldName, value) {
       this.$set(this.formData, fieldName, value);
-      this.$emit('input', this.formData);
+      this.$emit('input', this.action, this.formData);
     },
   },
 };

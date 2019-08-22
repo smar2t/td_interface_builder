@@ -2,9 +2,9 @@
   <div>
     <label>{{label}}</label>
     <select :multiple="multi"
-            :value="value"
+            :value="shownValue"
             @input="$emit('input',
-           $event.target.value)">
+           $event.target.value, property)">
       <option v-for="option in options"
               :key="option">
         {{option}}

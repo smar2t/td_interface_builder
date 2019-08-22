@@ -14,6 +14,7 @@
     "stjs": "^0.0.5",
     "vue": "^2.6.10",
     "vue-json-pretty": "^1.6.0",
+    "vue-jsoneditor": "^1.0.13",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },

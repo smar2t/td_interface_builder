@@ -14,6 +14,6 @@ import propertyMixin from './mixins/propertyMixin';
 
 export default {
   name: 'TextInput',
-  mixins: [propertyMixin],
+  mixins: [propertyMixin]
 };
 </script>

@@ -6,7 +6,7 @@ export default {
   data: () => ({
     shownValue: false,
   }),
-  props: ['event', 'actuator'],
+  props: ['eventProp'],
   computed: {
     event() {
       return this.$props.event;
