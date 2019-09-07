@@ -22,7 +22,6 @@ export default {
     submit() {
       this.submitting = true;
       this.actuator.setValue(this.inputValues).then((result) => {
-        console.log(result);
         this.submitting = false;
       });
     },

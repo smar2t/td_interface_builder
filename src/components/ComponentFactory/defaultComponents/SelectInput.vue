@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{label}}</label>
+    <label>{{label}}: </label>
     <select :multiple="multi"
             :value="shownValue"
             @input="$emit('input',
@@ -13,15 +13,15 @@
   </div>
 </template>
 <script>
-import propertyMixin from './mixins/propertyMixin';
+import propertyMixin from '@/mixins/default/propertyMixin';
 
 export default {
   mixins: [propertyMixin],
   name: 'SelectInput',
   computed: {
-    options(){
-      return this.property.options
-    }
-  }
+    options() {
+      return this.property.options;
+    },
+  },
 };
 </script>

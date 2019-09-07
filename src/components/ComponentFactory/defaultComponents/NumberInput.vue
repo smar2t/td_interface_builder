@@ -1,8 +1,8 @@
 <template>
   <div>
-    <label>{{label}}</label>
+    <label>{{label}}: </label>
     <input type="number"
-           :name="label + ': '"
+           :name="label"
            :value="shownValue"
            @input="$emit('input',
            $event.target.value, property)"
@@ -10,9 +10,9 @@
   </div>
 </template>
 <script>
-import propertyMixin from './mixins/propertyMixin';
+import propertyMixin from '@/mixins/default/propertyMixin';
 
 export default {
-  mixins: [propertyMixin]
+  mixins: [propertyMixin],
 };
 </script>

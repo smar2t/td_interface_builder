@@ -14,7 +14,7 @@
 import NumberInput from './NumberInput.vue';
 import SelectInput from './SelectInput.vue';
 import TextInput from './TextInput.vue';
-import ActionMixin from './mixins/actionMixin';
+import ActionMixin from '@/mixins/default/actionMixin';
 
 export default {
   components: { NumberInput, SelectInput, TextInput },

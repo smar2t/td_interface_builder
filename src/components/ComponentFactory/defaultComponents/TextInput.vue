@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{label}}</label>
+    <label>{{label}}: </label>
     <input type="text"
            :name="label"
            :value="shownValue"
@@ -10,10 +10,10 @@
   </div>
 </template>
 <script>
-import propertyMixin from './mixins/propertyMixin';
+import propertyMixin from '@/mixins/default/propertyMixin';
 
 export default {
   name: 'TextInput',
-   mixins: [propertyMixin]
+  mixins: [propertyMixin],
 };
 </script>

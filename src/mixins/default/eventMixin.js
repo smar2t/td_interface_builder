@@ -14,7 +14,7 @@ export default {
     actuator() {
       return this.$props.actuator;
     },
-    placeholder() {
+    description() {
       return this.event.description;
     },
     computedValue: {
@@ -38,16 +38,16 @@ export default {
     },
   },
   async mounted() {
-    if (this.links){
-    Object.values(this.links).forEach((link) => {
-      if (link) {
-        axios
-          .get(link)
-          .then((response) => {
-            this.shownValue = response;
-          });
-      }
-    });
-  }
+    if (this.links) {
+      Object.values(this.links).forEach((link) => {
+        if (link) {
+          axios
+            .get(link)
+            .then((response) => {
+              this.shownValue = response;
+            });
+        }
+      });
+    }
   },
 };
