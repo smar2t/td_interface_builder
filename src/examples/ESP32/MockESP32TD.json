@@ -1,0 +1,28 @@
+{
+    "name": "Built-in LED",
+    "href": "/things/led",
+    "@context": "https://iot.mozilla.org/schemas",
+    "@type": [
+        "OnOffSwitch",
+        "Light"
+    ],
+    "properties": {
+        "on": {
+            "type": "boolean",
+            "@type": "OnOffProperty",
+            "href": "/things/led/properties/on"
+        },
+        "level": {
+            "type": "number",
+            "@type": "BrightnessProperty",
+            "min": 0,
+            "max": 100,
+            "href": "/things/led/properties/level"
+        },
+        "limitTime": {
+            "type": "number",
+            "@type": "LimitTimeProperty",
+            "href": "/things/led/properties/level"
+        }
+    }
+}
